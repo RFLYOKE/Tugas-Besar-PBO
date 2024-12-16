@@ -162,6 +162,11 @@ public class InputTransaksi extends javax.swing.JFrame {
         btnUpdate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(0, 0, 0));
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnDelete.setBackground(new java.awt.Color(204, 204, 204));
         btnDelete.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -412,6 +417,48 @@ public class InputTransaksi extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
     }//GEN-LAST:event_btnInputActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        int selectedRow = tblTransaksi.getSelectedRow(); 
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Pilih data yang ingin diupdate dari tabel!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String idTransaksi = tblTransaksi.getValueAt(selectedRow, 0).toString(); 
+        String namaPelanggan = txtNamaPelanggan.getText();
+        String menuPesanan = (String) txtMenuPesanan.getSelectedItem();
+        String menuPendamping = (String) txtMenuPendamping.getSelectedItem();
+        String minuman = (String) txtMinuman.getSelectedItem();
+
+        if (namaPelanggan.isEmpty() || menuPesanan.equals("Choose") || menuPendamping.equals("Choose") || minuman.equals("Choose")) {
+            JOptionPane.showMessageDialog(null, "Semua bidang harus diisi!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String query = "UPDATE transaksi SET nama_pelanggan = ?, menu_pesanan = ?, menu_pendamping = ?, minuman = ? WHERE id_transaksi = ?";
+        try (PreparedStatement pst = connection.prepareStatement(query)) {
+            pst.setString(1, namaPelanggan);
+            pst.setString(2, menuPesanan);
+            pst.setString(3, menuPendamping);
+            pst.setString(4, minuman);
+            pst.setString(5, idTransaksi);
+
+            int rowsUpdated = pst.executeUpdate();
+            if (rowsUpdated > 0) {
+                JOptionPane.showMessageDialog(null, "Data berhasil diperbarui!");
+                loadTableData();
+                txtNamaPelanggan.setText("");
+                txtMenuPesanan.setSelectedItem("Choose");
+                txtMenuPendamping.setSelectedItem("Choose");
+                txtMinuman.setSelectedItem("Choose");
+            } else {
+                JOptionPane.showMessageDialog(null, "Gagal memperbarui data!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments
