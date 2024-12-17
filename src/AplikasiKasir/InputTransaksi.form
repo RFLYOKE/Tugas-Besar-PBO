@@ -28,7 +28,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" min="-2" pref="636" max="-2" attributes="0"/>
+          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -44,59 +44,78 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="lblNamaPelanggan" min="-2" pref="121" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="322" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="txtNamaPelanggan" alignment="1" min="-2" pref="304" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="lblIDTransaksi" min="-2" pref="121" max="-2" attributes="0"/>
+                                  <Component id="lblTgl" min="-2" pref="121" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtIDTransaksi" min="-2" pref="304" max="-2" attributes="0"/>
+                                  <Component id="txtTgl" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblMenuPesanan" min="-2" pref="121" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="txtMenuPesanan" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblNamaPelanggan" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
+                                      <Component id="lblIDTransaksi" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblTgl" min="-2" pref="121" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="txtTgl" min="-2" pref="304" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblMenuPendamping" min="-2" pref="127" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txtMenuPendamping" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblMinuman" min="-2" pref="121" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="txtMinuman" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtIDTransaksi" max="32767" attributes="0"/>
+                                      <Component id="txtNamaPelanggan" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtSukses" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="jPanel2" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblMinuman" min="-2" pref="121" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="txtMinuman" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="lblMenuPesanan" min="-2" pref="121" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="txtMenuPesanan" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="lblMenuPendamping" min="-2" pref="127" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="txtMenuPendamping" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="countMinuman" pref="0" max="32767" attributes="0"/>
+                              <Component id="countPesanan" alignment="0" min="-2" pref="48" max="-2" attributes="0"/>
+                              <Component id="countPendamping" alignment="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="txtSukses" min="-2" pref="531" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnClear" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -108,42 +127,50 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblIDTransaksi" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtIDTransaksi" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtIDTransaksi" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="lblIDTransaksi" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblNamaPelanggan" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtNamaPelanggan" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtNamaPelanggan" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="lblNamaPelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblMenuPesanan" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtMenuPesanan" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="countPesanan" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblMenuPendamping" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtMenuPendamping" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="countPendamping" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblMinuman" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtMinuman" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="countMinuman" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblMinuman" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtMinuman" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblTgl" min="-2" max="-2" attributes="0"/>
                       <Component id="txtTgl" min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="178" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="txtSukses" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="227" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="txtSukses" min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="btnClear" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -248,11 +275,11 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="6">
                 <StringItem index="0" value="Choose"/>
-                <StringItem index="1" value="Bebek Panggang Original"/>
-                <StringItem index="2" value="Bebek Panggang Pedas Manis"/>
-                <StringItem index="3" value="Bebek Panggang Sambal Matah"/>
-                <StringItem index="4" value="Bebek Panggang Madu"/>
-                <StringItem index="5" value="Bebek Panggang Lada Hitam"/>
+                <StringItem index="1" value="Bebek Panggang Original (20000)"/>
+                <StringItem index="2" value="Bebek Panggang Pedas Manis (25000)"/>
+                <StringItem index="3" value="Bebek Panggang Sambal Matah (26000)"/>
+                <StringItem index="4" value="Bebek Panggang Madu (30000)"/>
+                <StringItem index="5" value="Bebek Panggang Lada Hitam (28000)"/>
               </StringArray>
             </Property>
           </Properties>
@@ -309,11 +336,11 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="7">
                 <StringItem index="0" value="Choose"/>
-                <StringItem index="1" value="Nasi"/>
-                <StringItem index="2" value="Ati Ampela"/>
-                <StringItem index="3" value="Lalapan"/>
-                <StringItem index="4" value="Tempe dan Tahu"/>
-                <StringItem index="5" value="Gorengan"/>
+                <StringItem index="1" value="Nasi (3000)"/>
+                <StringItem index="2" value="Ati Ampela (5000)"/>
+                <StringItem index="3" value="Lalapan (1000)"/>
+                <StringItem index="4" value="Tempe dan Tahu (3000)"/>
+                <StringItem index="5" value="Gorengan (5000)"/>
                 <StringItem index="6" value="Tidak Pake"/>
               </StringArray>
             </Property>
@@ -336,12 +363,12 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="7">
                 <StringItem index="0" value="Choose"/>
-                <StringItem index="1" value="Jus Alpukat"/>
-                <StringItem index="2" value="Jus Mangga"/>
-                <StringItem index="3" value="Es teh"/>
-                <StringItem index="4" value="Es jeruk"/>
-                <StringItem index="5" value="Nutrisari"/>
-                <StringItem index="6" value="Josua (extra jos susu)"/>
+                <StringItem index="1" value="Jus Alpukat (8000)"/>
+                <StringItem index="2" value="Jus Mangga (8000)"/>
+                <StringItem index="3" value="Es teh (3500)"/>
+                <StringItem index="4" value="Es jeruk (5000)"/>
+                <StringItem index="5" value="Nutrisari (4000)"/>
+                <StringItem index="6" value="Susu (5000)"/>
               </StringArray>
             </Property>
           </Properties>
@@ -370,16 +397,16 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
-                      <Component id="btnInput" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnUpdate" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnStruk" min="-2" pref="168" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Component id="btnInput" pref="148" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnUpdate" min="-2" pref="103" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnDelete" min="-2" pref="96" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnStruk" min="-2" pref="188" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -482,17 +509,41 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="6" rowCount="0">
+                  <Table columnCount="10" rowCount="0">
                     <Column editable="true" title="ID Transaksi" type="java.lang.Object"/>
                     <Column editable="true" title="Nama Pelanggan" type="java.lang.Object"/>
                     <Column editable="true" title="Menu Pesanan" type="java.lang.Object"/>
+                    <Column editable="true" title="jPesanan" type="java.lang.Object"/>
                     <Column editable="true" title="Side Menu" type="java.lang.Object"/>
+                    <Column editable="true" title="jSideMenu" type="java.lang.Object"/>
                     <Column editable="true" title="Minuman" type="java.lang.Object"/>
+                    <Column editable="true" title="jMinuman" type="java.lang.Object"/>
                     <Column editable="true" title="Tanggal" type="java.lang.Object"/>
+                    <Column editable="true" title="Total Harga" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
@@ -542,6 +593,29 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Status"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="countPesanan">
+        </Component>
+        <Component class="javax.swing.JSpinner" name="countPendamping">
+        </Component>
+        <Component class="javax.swing.JSpinner" name="countMinuman">
+        </Component>
+        <Component class="javax.swing.JButton" name="btnClear">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="72" green="5d" red="40" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Clear form"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClearActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
