@@ -341,7 +341,7 @@
                 <StringItem index="3" value="Lalapan (1000)"/>
                 <StringItem index="4" value="Tempe dan Tahu (3000)"/>
                 <StringItem index="5" value="Gorengan (5000)"/>
-                <StringItem index="6" value="Tidak Pake"/>
+                <StringItem index="6" value="tidak pake"/>
               </StringArray>
             </Property>
           </Properties>
@@ -361,7 +361,7 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="7">
+              <StringArray count="8">
                 <StringItem index="0" value="Choose"/>
                 <StringItem index="1" value="Jus Alpukat (8000)"/>
                 <StringItem index="2" value="Jus Mangga (8000)"/>
@@ -369,6 +369,7 @@
                 <StringItem index="4" value="Es jeruk (5000)"/>
                 <StringItem index="5" value="Nutrisari (4000)"/>
                 <StringItem index="6" value="Susu (5000)"/>
+                <StringItem index="7" value="tidak pake"/>
               </StringArray>
             </Property>
           </Properties>

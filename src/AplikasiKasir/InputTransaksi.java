@@ -203,12 +203,12 @@ public class InputTransaksi extends javax.swing.JFrame {
         txtMenuPendamping.setBackground(new java.awt.Color(255, 255, 255));
         txtMenuPendamping.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtMenuPendamping.setForeground(new java.awt.Color(51, 51, 51));
-        txtMenuPendamping.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose", "Nasi (3000)", "Ati Ampela (5000)", "Lalapan (1000)", "Tempe dan Tahu (3000)", "Gorengan (5000)", "Tidak Pake" }));
+        txtMenuPendamping.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose", "Nasi (3000)", "Ati Ampela (5000)", "Lalapan (1000)", "Tempe dan Tahu (3000)", "Gorengan (5000)", "tidak pake" }));
 
         txtMinuman.setBackground(new java.awt.Color(255, 255, 255));
         txtMinuman.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtMinuman.setForeground(new java.awt.Color(51, 51, 51));
-        txtMinuman.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose", "Jus Alpukat (8000)", "Jus Mangga (8000)", "Es teh (3500)", "Es jeruk (5000)", "Nutrisari (4000)", "Susu (5000)" }));
+        txtMinuman.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose", "Jus Alpukat (8000)", "Jus Mangga (8000)", "Es teh (3500)", "Es jeruk (5000)", "Nutrisari (4000)", "Susu (5000)", "tidak pake" }));
 
         lblMinuman.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblMinuman.setForeground(new java.awt.Color(51, 51, 51));
@@ -484,14 +484,34 @@ public class InputTransaksi extends javax.swing.JFrame {
         int jmlPendamping = (Integer) countPendamping.getValue();
         int jmlMinuman = (Integer) countMinuman.getValue();
         
-        if (jmlPesanan <= 0 || jmlPendamping <= 0 || jmlMinuman <= 0) {
+        if (jmlPesanan <= 0) {
             JOptionPane.showMessageDialog(null, "Jumlah pesanan, pendamping, atau minuman tidak boleh 0 atau negatif!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
+        if (menuPend.equals("tidak pake")) {
+            if (jmlPendamping < 0) {
+                JOptionPane.showMessageDialog(null, "Jumlah menu pendamping tidak boleh negatif!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            if (jmlPendamping <= 0) {
+                JOptionPane.showMessageDialog(null, "Jumlah menu pendamping tidak boleh 0 atau negatif!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
+        if (minuman.equals("tidak pake")) {
+            if (jmlMinuman < 0) {
+                JOptionPane.showMessageDialog(null, "Jumlah menu pendamping tidak boleh negatif!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            if (jmlMinuman <= 0) {
+                JOptionPane.showMessageDialog(null, "Jumlah menu pendamping tidak boleh 0 atau negatif!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
         int hargaPesanan = ambilHargaDariComboBox(menuPes);
-        int hargaPendamping = ambilHargaDariComboBox(menuPend);
-        int hargaMinuman = ambilHargaDariComboBox(minuman);
+        int hargaPendamping = menuPend.equalsIgnoreCase("tidak pake") ? 0 : ambilHargaDariComboBox(menuPend);
+        int hargaMinuman = minuman.equalsIgnoreCase("tidak pake") ? 0 : ambilHargaDariComboBox(minuman);
         
         int totalHarga = (hargaPesanan * jmlPesanan) + (hargaPendamping * jmlPendamping) + (hargaMinuman * jmlMinuman);
 
@@ -561,10 +581,30 @@ public class InputTransaksi extends javax.swing.JFrame {
         int jmlPesanan = (Integer) countPesanan.getValue();
         int jmlPendamping = (Integer) countPendamping.getValue();
         int jmlMinuman = (Integer) countMinuman.getValue();
-        if (jmlPesanan <= 0 || jmlPendamping <= 0 || jmlMinuman <= 0) {
-           JOptionPane.showMessageDialog(null, "Jumlah pesanan, pendamping, atau minuman tidak boleh 0 atau negatif!", "Error", JOptionPane.ERROR_MESSAGE);
-           return;
-        }
+        if (jmlPesanan <= 0) {
+             JOptionPane.showMessageDialog(null, "Jumlah pesanan, pendamping, atau minuman tidak boleh 0 atau negatif!", "Error", JOptionPane.ERROR_MESSAGE);
+             return;
+         }
+
+         if (menuPendamping.equals("tidak pake")) {
+             if (jmlPendamping < 0) {
+                 JOptionPane.showMessageDialog(null, "Jumlah menu pendamping tidak boleh negatif!", "Error", JOptionPane.ERROR_MESSAGE);
+             }
+         } else {
+             if (jmlPendamping <= 0) {
+                 JOptionPane.showMessageDialog(null, "Jumlah menu pendamping tidak boleh 0 atau negatif!", "Error", JOptionPane.ERROR_MESSAGE);
+             }
+         }
+
+         if (minuman.equals("tidak pake")) {
+             if (jmlMinuman < 0) {
+                 JOptionPane.showMessageDialog(null, "Jumlah menu pendamping tidak boleh negatif!", "Error", JOptionPane.ERROR_MESSAGE);
+             }
+         } else {
+             if (jmlMinuman <= 0) {
+                 JOptionPane.showMessageDialog(null, "Jumlah menu pendamping tidak boleh 0 atau negatif!", "Error", JOptionPane.ERROR_MESSAGE);
+             }
+         }
 
 
         if (namaPelanggan.isEmpty() || menuPesanan.equals("Choose") || menuPendamping.equals("Choose") || minuman.equals("Choose")) {
