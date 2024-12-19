@@ -462,7 +462,62 @@ public class InputTransaksi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnStrukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStrukActionPerformed
-        // TODO add your handling code here:
+        try {
+            String sqlSelect = "SELECT * FROM transaksi";
+            PreparedStatement pstSelect = connection.prepareStatement(sqlSelect);
+            ResultSet rs = pstSelect.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                JOptionPane.showMessageDialog(null, "Tidak ada data transaksi untuk dicetak!", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            while (rs.next()) {
+                String idTransaksi = rs.getString("id_transaksi");
+                String namaPelanggan = rs.getString("nama_pelanggan");
+                String menuPesanan = rs.getString("menu_pesanan");
+                int jmlPesanan = rs.getInt("jmlPesanan");
+                String menuPendamping = rs.getString("menu_pendamping");
+                int jmlPendamping = rs.getInt("jmlPendamping");
+                String minuman = rs.getString("minuman");
+                int jmlMinuman = rs.getInt("jmlMinuman");
+                int totalHarga = rs.getInt("totalHarga");
+                String tanggal = rs.getString("tanggal");
+                
+                String sqlInsert = "INSERT INTO detailTransaksi (id_transaksi, nama_pelanggan, menu_pesanan, jmlPesanan, "
+                        + "menu_pendamping, jmlPendamping, minuman, jmlMinuman, totalHarga, tanggal) "
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement pstInsert = connection.prepareStatement(sqlInsert);
+                pstInsert.setString(1, idTransaksi);
+                pstInsert.setString(2, namaPelanggan);
+                pstInsert.setString(3, menuPesanan);
+                pstInsert.setInt(4, jmlPesanan);
+                pstInsert.setString(5, menuPendamping);
+                pstInsert.setInt(6, jmlPendamping);
+                pstInsert.setString(7, minuman);
+                pstInsert.setInt(8, jmlMinuman);
+                pstInsert.setInt(9, totalHarga);
+                pstInsert.setString(10, tanggal);
+                pstInsert.executeUpdate();
+            }
+
+            String sql1 = "SET FOREIGN_KEY_CHECKS = 0";
+            String sql2 = "TRUNCATE TABLE transaksi";
+            String sql3 = "ALTER TABLE transaksi AUTO_INCREMENT = 1";
+            String sql4 = "SET FOREIGN_KEY_CHECKS = 1";
+            PreparedStatement pstDelete1 = connection.prepareStatement(sql1);
+            PreparedStatement pstDelete2 = connection.prepareStatement(sql2);
+            PreparedStatement pstDelete3 = connection.prepareStatement(sql3);
+            PreparedStatement pstDelete4 = connection.prepareStatement(sql4);
+            pstDelete1.executeUpdate();
+            pstDelete2.executeUpdate();
+            pstDelete3.executeUpdate();
+            pstDelete4.executeUpdate();
+
+            loadTableData();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnStrukActionPerformed
 
     private void tblTransaksiInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_tblTransaksiInputMethodTextChanged
