@@ -4,17 +4,68 @@
  */
 package AplikasiKasir;
 
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Asus
  */
 public class InputLaporan extends javax.swing.JFrame {
-
+    Connection connection;
     /**
      * Creates new form InputLaporan
      */
     public InputLaporan() {
         initComponents();
+        connection = DatabaseConnection.getConnection();
+        showYear(); 
+        loadDataDetailTransaksi();
+    }
+    
+    private void showYear() {
+        try {
+            String sql = "SELECT YEAR(CURDATE()) AS tahun"; 
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                lblTahun.setText(rs.getString("tahun")); 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Error retrieving year: " + e.getMessage());
+        }
+    }
+
+    private void loadDataDetailTransaksi() {
+        DefaultTableModel model = (DefaultTableModel) tblLaporanPenj.getModel();
+        model.setRowCount(0); 
+
+        try {
+            String sql = "SELECT * FROM detailTransaksi";
+            PreparedStatement pst = connection.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Object[] row = new Object[] {
+                    rs.getString("id_transaksi"),
+                    rs.getString("nama_pelanggan"),
+                    rs.getString("menu_pesanan"),
+                    rs.getString("menuPendamping"),
+                    rs.getString("minuman"),
+                    rs.getString("tanggal"),
+                    rs.getInt("jmlPesanan"),
+                    rs.getInt("jmlPendamping"),
+                    rs.getInt("jmlMinuman"),
+                    rs.getInt("totalHarga")
+                };
+                model.addRow(row); 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Error loading data: " + e.getMessage());
+        }
     }
 
     /**
@@ -44,6 +95,11 @@ public class InputLaporan extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Logout");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -65,7 +121,7 @@ public class InputLaporan extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Transaksi", "Nama Pelanggan", "Menu Pesanan", "Side Menu", "Minuman", "Tanggal"
+                "ID Transaksi", "Nama Pelanggan", "Menu Pesanan", "Side Menu", "Minuman", "Tanggal", "jmlPesanan", "jmlPendamping", "jmlMinuman", "totalHarga"
             }
         ));
         jScrollPane1.setViewportView(tblLaporanPenj);
@@ -82,7 +138,7 @@ public class InputLaporan extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1))
@@ -116,7 +172,9 @@ public class InputLaporan extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,6 +185,11 @@ public class InputLaporan extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        InputUser logout = new InputUser();
+        logout.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
