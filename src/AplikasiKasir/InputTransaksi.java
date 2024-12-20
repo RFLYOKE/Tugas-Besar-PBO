@@ -462,18 +462,25 @@ public class InputTransaksi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnStrukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStrukActionPerformed
-        try {
-            String sqlSelect = "SELECT * FROM transaksi";
-            PreparedStatement pstSelect = connection.prepareStatement(sqlSelect);
-            ResultSet rs = pstSelect.executeQuery();
+            try {
+                String sqlSelect = "SELECT * FROM transaksi";
+                PreparedStatement pstSelect = connection.prepareStatement(sqlSelect, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs = pstSelect.executeQuery();
 
-            if (!rs.isBeforeFirst()) {
-                JOptionPane.showMessageDialog(null, "Tidak ada data transaksi untuk dicetak!", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+                if (!rs.isBeforeFirst()) {
+                    JOptionPane.showMessageDialog(null, "Tidak ada data transaksi untuk dicetak!", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 
-            while (rs.next()) {
-                String idTransaksi = rs.getString("id_transaksi");
+                int selectedRow = tblTransaksi.getSelectedRow(); 
+                if (selectedRow == -1) {
+                    JOptionPane.showMessageDialog(null, "Pilih transaksi yang ingin dicetak!", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                rs.absolute(selectedRow + 1);
+
+                String id = rs.getString("id_transaksi"); 
                 String namaPelanggan = rs.getString("nama_pelanggan");
                 String menuPesanan = rs.getString("menu_pesanan");
                 int jmlPesanan = rs.getInt("jmlPesanan");
@@ -483,41 +490,47 @@ public class InputTransaksi extends javax.swing.JFrame {
                 int jmlMinuman = rs.getInt("jmlMinuman");
                 int totalHarga = rs.getInt("totalHarga");
                 String tanggal = rs.getString("tanggal");
-                
-                String sqlInsert = "INSERT INTO detailTransaksi (id_transaksi, nama_pelanggan, menu_pesanan, jmlPesanan, "
-                        + "menu_pendamping, jmlPendamping, minuman, jmlMinuman, totalHarga, tanggal) "
-                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                PreparedStatement pstInsert = connection.prepareStatement(sqlInsert);
-                pstInsert.setString(1, idTransaksi);
-                pstInsert.setString(2, namaPelanggan);
-                pstInsert.setString(3, menuPesanan);
-                pstInsert.setInt(4, jmlPesanan);
-                pstInsert.setString(5, menuPendamping);
-                pstInsert.setInt(6, jmlPendamping);
-                pstInsert.setString(7, minuman);
-                pstInsert.setInt(8, jmlMinuman);
-                pstInsert.setInt(9, totalHarga);
-                pstInsert.setString(10, tanggal);
-                pstInsert.executeUpdate();
+
+               String sqlData = "INSERT INTO detailTransaksi (id_transaksi, nama_pelanggan, menu_pesanan, jmlPesanan, "
+                       + "menuPendamping, jmlPendamping, minuman, jmlMinuman, totalHarga, tanggal) "
+                       + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement pstInsertDetail = connection.prepareStatement(sqlData);
+                pstInsertDetail.setString(1, id);
+                pstInsertDetail.setString(2, namaPelanggan);
+                pstInsertDetail.setString(3, menuPesanan);
+                pstInsertDetail.setInt(4, jmlPesanan);
+                pstInsertDetail.setString(5, menuPendamping);
+                pstInsertDetail.setInt(6, jmlPendamping);
+                pstInsertDetail.setString(7, minuman);
+                pstInsertDetail.setInt(8, jmlMinuman);
+                pstInsertDetail.setInt(9, totalHarga);
+                pstInsertDetail.setString(10, tanggal);
+                pstInsertDetail.executeUpdate();
+
+                String sqlDelete1 = "SET FOREIGN_KEY_CHECKS = 0";
+                String sqlDelete2 = "DELETE FROM transaksi WHERE id_transaksi = ?";
+                String sqlDelete3 = "SET FOREIGN_KEY_CHECKS = 1";
+                PreparedStatement pstDelete1 = connection.prepareStatement(sqlDelete1);
+                PreparedStatement pstDelete2 = connection.prepareStatement(sqlDelete2);
+                pstDelete2.setString(1, id);
+                PreparedStatement pstDelete3 = connection.prepareStatement(sqlDelete3);
+                pstDelete1.executeUpdate();
+                pstDelete2.executeUpdate();
+                pstDelete3.executeUpdate();
+
+                StrukPembelian struk = new StrukPembelian();
+                struk.setDataStruk(namaPelanggan, menuPesanan, jmlPesanan, menuPendamping,
+                        jmlPendamping, minuman, jmlMinuman, totalHarga, tanggal);
+                struk.setVisible(true);
+
+                loadTableData();
+                JOptionPane.showMessageDialog(null, "Transaksi berhasil dipindahkan dan struk dicetak!");
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error: Pilihan tidak valid!", "Error", JOptionPane.ERROR_MESSAGE);
             }
-
-            String sql1 = "SET FOREIGN_KEY_CHECKS = 0";
-            String sql2 = "TRUNCATE TABLE transaksi";
-            String sql3 = "ALTER TABLE transaksi AUTO_INCREMENT = 1";
-            String sql4 = "SET FOREIGN_KEY_CHECKS = 1";
-            PreparedStatement pstDelete1 = connection.prepareStatement(sql1);
-            PreparedStatement pstDelete2 = connection.prepareStatement(sql2);
-            PreparedStatement pstDelete3 = connection.prepareStatement(sql3);
-            PreparedStatement pstDelete4 = connection.prepareStatement(sql4);
-            pstDelete1.executeUpdate();
-            pstDelete2.executeUpdate();
-            pstDelete3.executeUpdate();
-            pstDelete4.executeUpdate();
-
-            loadTableData();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
     }//GEN-LAST:event_btnStrukActionPerformed
 
     private void tblTransaksiInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_tblTransaksiInputMethodTextChanged
@@ -528,63 +541,57 @@ public class InputTransaksi extends javax.swing.JFrame {
         String sqlData = "INSERT INTO transaksi (nama_pelanggan, menu_pesanan, jmlPesanan, "
                 + "menu_pendamping, jmlPendamping, minuman, jmlMinuman, totalHarga) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         String idTransaksi = "";
-        String namaPelanggan = txtNamaPelanggan.getText();
-        String menuPes, menuPend, minuman;
-        menuPes = (String)txtMenuPesanan.getSelectedItem();
-        menuPend = (String)txtMenuPendamping.getSelectedItem();
-        minuman = (String)txtMinuman.getSelectedItem();
-        String tgl = "";  
-        
+        String namaPelanggan = txtNamaPelanggan.getText().trim();
+        String menuPes = (String) txtMenuPesanan.getSelectedItem();
+        String menuPend = (String) txtMenuPendamping.getSelectedItem();
+        String minuman = (String) txtMinuman.getSelectedItem();
+        String tgl = "";
+
         int jmlPesanan = (Integer) countPesanan.getValue();
         int jmlPendamping = (Integer) countPendamping.getValue();
         int jmlMinuman = (Integer) countMinuman.getValue();
-        
-        if (jmlPesanan <= 0) {
-            JOptionPane.showMessageDialog(null, "Jumlah pesanan, pendamping, atau minuman tidak boleh 0 atau negatif!", "Error", JOptionPane.ERROR_MESSAGE);
+
+        if (namaPelanggan.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nama pelanggan tidak boleh kosong!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        if (menuPend.equals("tidak pake")) {
-            if (jmlPendamping < 0) {
-                JOptionPane.showMessageDialog(null, "Jumlah menu pendamping tidak boleh negatif!", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            if (jmlPendamping <= 0) {
-                JOptionPane.showMessageDialog(null, "Jumlah menu pendamping tidak boleh 0 atau negatif!", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+
+        if (jmlPesanan <= 0) {
+            JOptionPane.showMessageDialog(null, "Jumlah pesanan tidak boleh 0 atau negatif!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        
-        if (minuman.equals("tidak pake")) {
-            if (jmlMinuman < 0) {
-                JOptionPane.showMessageDialog(null, "Jumlah menu pendamping tidak boleh negatif!", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            if (jmlMinuman <= 0) {
-                JOptionPane.showMessageDialog(null, "Jumlah menu pendamping tidak boleh 0 atau negatif!", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+
+        if (!menuPend.equalsIgnoreCase("tidak pake") && jmlPendamping <= 0) {
+            JOptionPane.showMessageDialog(null, "Jumlah menu pendamping tidak boleh 0 atau negatif jika dipilih!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        
+
+        if (!minuman.equalsIgnoreCase("tidak pake") && jmlMinuman <= 0) {
+            JOptionPane.showMessageDialog(null, "Jumlah minuman tidak boleh 0 atau negatif jika dipilih!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         int hargaPesanan = ambilHargaDariComboBox(menuPes);
         int hargaPendamping = menuPend.equalsIgnoreCase("tidak pake") ? 0 : ambilHargaDariComboBox(menuPend);
         int hargaMinuman = minuman.equalsIgnoreCase("tidak pake") ? 0 : ambilHargaDariComboBox(minuman);
-        
+
         int totalHarga = (hargaPesanan * jmlPesanan) + (hargaPendamping * jmlPendamping) + (hargaMinuman * jmlMinuman);
 
-        try{
-            Transaksi transaksi = new Transaksi(idTransaksi, namaPelanggan, menuPes, menuPend, minuman, tgl);
+        try {
             PreparedStatement pst = connection.prepareStatement(sqlData, Statement.RETURN_GENERATED_KEYS);
-            pst.setString(1, namaPelanggan); 
-            pst.setString(2, menuPes);      
-            pst.setInt(3, jmlPesanan);       
-            pst.setString(4, menuPend);      
-            pst.setInt(5, jmlPendamping);    
-            pst.setString(6, minuman);      
-            pst.setInt(7, jmlMinuman);      
-            pst.setInt(8, totalHarga); 
+            pst.setString(1, namaPelanggan);
+            pst.setString(2, menuPes);
+            pst.setInt(3, jmlPesanan);
+            pst.setString(4, menuPend);
+            pst.setInt(5, jmlPendamping);
+            pst.setString(6, minuman);
+            pst.setInt(7, jmlMinuman);
+            pst.setInt(8, totalHarga);
             pst.executeUpdate();
+
             ResultSet generatedKeys = pst.getGeneratedKeys();
             if (generatedKeys.next()) {
-                idTransaksi = generatedKeys.getString(1); 
+                idTransaksi = generatedKeys.getString(1);
             }
 
             String tampilData = "SELECT tanggal FROM transaksi WHERE id_transaksi = ?";
@@ -593,11 +600,12 @@ public class InputTransaksi extends javax.swing.JFrame {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                tgl = rs.getString("tanggal"); 
+                tgl = rs.getString("tanggal");
             }
+
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
             loadTableData();
-            
+
             txtNamaPelanggan.setText("");
             txtMenuPesanan.setSelectedItem("Choose");
             txtMenuPendamping.setSelectedItem("Choose");
@@ -605,12 +613,8 @@ public class InputTransaksi extends javax.swing.JFrame {
             countPesanan.setValue(0);
             countPendamping.setValue(0);
             countMinuman.setValue(0);
-        } catch(ValidasiInputExceptions e){
-            txtSukses.setText("Error: " + e.getMessage());
-            txtSukses.setForeground(Color.red);
-        } catch(SQLException e){
-            txtSukses.setText("Error: " + e.getMessage());
-            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnInputActionPerformed
 

@@ -9,17 +9,19 @@ package AplikasiKasir;
  * @author Asus
  */
 public class StrukPembelian extends javax.swing.JFrame {
-    public void setStruk(String nama, String menu, int jmlmenu, String pendamping, 
-            int jmlPend, String minuman, int jmlMin, int harga){
+    public void setDataStruk(String nama, String menu, int jMenu, String pendamping, 
+                         int jmlPend, String minuman, int jmlMin, int harga, String tanggal) {
         txtNama.setText(nama);
         txtMenu.setText(menu);
-        jmlMenu.setText(String.valueOf(jmlmenu));
+        jmlMenu.setText(String.valueOf(jMenu));
         txtPendamping.setText(pendamping);
         jmlPendamping.setText(String.valueOf(jmlPend));
         txtMinuman.setText(minuman);
         jmlMinuman.setText(String.valueOf(jmlMin));
         totalHarga.setText(String.valueOf(harga));
+        tglJam.setText(tanggal);
     }
+
     /**
      * Creates new form StrukPembelian
      */
@@ -59,7 +61,7 @@ public class StrukPembelian extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 248, 243));
         jPanel1.setForeground(new java.awt.Color(51, 51, 51));
