@@ -131,6 +131,7 @@ public class FrameAdmin extends javax.swing.JFrame {
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         InputLaporan laporan = new InputLaporan();
         laporan.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnNextActionPerformed
 
     /**
