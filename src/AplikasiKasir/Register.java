@@ -20,6 +20,7 @@ public class Register extends javax.swing.JFrame {
         initComponents();
         inisialisasiDatabase();
         txtIdUser.setEnabled(false);
+        txtRole.setEnabled(false);
     }
     
     private void inisialisasiDatabase() {
@@ -49,7 +50,6 @@ public class Register extends javax.swing.JFrame {
         lblRegister = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
         lblStatus = new javax.swing.JLabel();
-        txtRole = new javax.swing.JComboBox<>();
         lblRole = new javax.swing.JLabel();
         lblNamaKasir = new javax.swing.JLabel();
         lblIdUser = new javax.swing.JLabel();
@@ -57,6 +57,7 @@ public class Register extends javax.swing.JFrame {
         txtUsername = new javax.swing.JTextField();
         txtNama = new javax.swing.JTextField();
         txtIdUser = new javax.swing.JTextField();
+        txtRole = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,16 +91,6 @@ public class Register extends javax.swing.JFrame {
         lblStatus.setForeground(new java.awt.Color(51, 51, 51));
         lblStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        txtRole.setBackground(new java.awt.Color(255, 255, 255));
-        txtRole.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtRole.setForeground(new java.awt.Color(0, 0, 0));
-        txtRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "option", "kasir", "admin" }));
-        txtRole.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRoleActionPerformed(evt);
-            }
-        });
-
         lblRole.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblRole.setForeground(new java.awt.Color(51, 51, 51));
         lblRole.setText("Role");
@@ -124,10 +115,17 @@ public class Register extends javax.swing.JFrame {
         });
 
         txtUsername.setBackground(new java.awt.Color(247, 231, 220));
+        txtUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         txtNama.setBackground(new java.awt.Color(247, 231, 220));
+        txtNama.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         txtIdUser.setBackground(new java.awt.Color(247, 231, 220));
+
+        txtRole.setBackground(new java.awt.Color(247, 231, 220));
+        txtRole.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtRole.setForeground(new java.awt.Color(0, 0, 0));
+        txtRole.setText("kasir");
 
         javax.swing.GroupLayout RegisterLayout = new javax.swing.GroupLayout(Register);
         Register.setLayout(RegisterLayout);
@@ -154,15 +152,14 @@ public class Register extends javax.swing.JFrame {
                         .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(115, 115, 115)))
                 .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegister, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(txtIdUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
                         .addComponent(txtNama, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lblStatus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtRole, javax.swing.GroupLayout.Alignment.LEADING, 0, 316, Short.MAX_VALUE)))
+                        .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtRole, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 44, Short.MAX_VALUE))
         );
         RegisterLayout.setVerticalGroup(
@@ -185,16 +182,17 @@ public class Register extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNamaKasir, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRole))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(RegisterLayout.createSequentialGroup()
+                        .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblRole))))
+                .addGap(12, 12, 12)
                 .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -216,7 +214,7 @@ public class Register extends javax.swing.JFrame {
             String namaKasir = txtNama.getText().trim();
             String username = txtUsername.getText().trim();
             String password = new String(txtPassword.getPassword()).trim();
-            String role = (String) txtRole.getSelectedItem();
+            String role = txtRole.getText();
 
             if (namaKasir.isEmpty() || namaKasir.length() < 3) {
                 lblStatus.setText("Nama Kasir harus diisi dan minimal 3 karakter!");
@@ -256,11 +254,13 @@ public class Register extends javax.swing.JFrame {
                     lblStatus.setText("Registrasi berhasil!");
                     lblStatus.setForeground(Color.green);
                     JOptionPane.showMessageDialog(this, "Registrasi berhasil!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
-
+                    InputUser login = new InputUser();
+                    login.setVisible(true);
+                    this.dispose();
+                    
                     txtNama.setText("");
                     txtUsername.setText("");
                     txtPassword.setText("");
-                    txtRole.setSelectedItem("Option");
                 } else {
                     lblStatus.setText("Registrasi gagal!");
                     lblStatus.setForeground(Color.red);
@@ -286,10 +286,6 @@ public class Register extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
 
-    private void txtRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRoleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRoleActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -307,7 +303,7 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JTextField txtIdUser;
     private javax.swing.JTextField txtNama;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JComboBox<String> txtRole;
+    private javax.swing.JTextField txtRole;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
