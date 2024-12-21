@@ -5,7 +5,7 @@
 package AplikasiKasir;
 import java.awt.Color;
 import java.sql.*;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
@@ -53,10 +53,10 @@ public class Register extends javax.swing.JFrame {
         lblRole = new javax.swing.JLabel();
         lblNamaKasir = new javax.swing.JLabel();
         lblIdUser = new javax.swing.JLabel();
-        txtIdUser = new javax.swing.JPasswordField();
-        txtUsername = new javax.swing.JPasswordField();
         txtPassword = new javax.swing.JPasswordField();
-        txtNamaKasir = new javax.swing.JPasswordField();
+        txtUsername = new javax.swing.JTextField();
+        txtNama = new javax.swing.JTextField();
+        txtIdUser = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,30 +107,12 @@ public class Register extends javax.swing.JFrame {
         lblNamaKasir.setBackground(new java.awt.Color(102, 102, 102));
         lblNamaKasir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblNamaKasir.setForeground(new java.awt.Color(102, 102, 102));
-        lblNamaKasir.setText("Nama Kasir");
+        lblNamaKasir.setText("Nama");
 
         lblIdUser.setBackground(new java.awt.Color(102, 102, 102));
         lblIdUser.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblIdUser.setForeground(new java.awt.Color(102, 102, 102));
         lblIdUser.setText("ID User");
-
-        txtIdUser.setBackground(new java.awt.Color(247, 231, 220));
-        txtIdUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtIdUser.setForeground(new java.awt.Color(51, 51, 51));
-        txtIdUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdUserActionPerformed(evt);
-            }
-        });
-
-        txtUsername.setBackground(new java.awt.Color(247, 231, 220));
-        txtUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtUsername.setForeground(new java.awt.Color(51, 51, 51));
-        txtUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsernameActionPerformed(evt);
-            }
-        });
 
         txtPassword.setBackground(new java.awt.Color(247, 231, 220));
         txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -141,94 +123,89 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
-        txtNamaKasir.setBackground(new java.awt.Color(247, 231, 220));
-        txtNamaKasir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtNamaKasir.setForeground(new java.awt.Color(51, 51, 51));
-        txtNamaKasir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNamaKasirActionPerformed(evt);
-            }
-        });
+        txtUsername.setBackground(new java.awt.Color(247, 231, 220));
+
+        txtNama.setBackground(new java.awt.Color(247, 231, 220));
+
+        txtIdUser.setBackground(new java.awt.Color(247, 231, 220));
 
         javax.swing.GroupLayout RegisterLayout = new javax.swing.GroupLayout(Register);
         Register.setLayout(RegisterLayout);
         RegisterLayout.setHorizontalGroup(
             RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterLayout.createSequentialGroup()
-                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(RegisterLayout.createSequentialGroup()
-                        .addContainerGap(39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(RegisterLayout.createSequentialGroup()
+                .addContainerGap(39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterLayout.createSequentialGroup()
+                                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblUsername)
+                                    .addComponent(lblIdUser))
+                                .addGap(103, 103, 103))
                             .addGroup(RegisterLayout.createSequentialGroup()
-                                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(212, 212, 212))
-                            .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtRole, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterLayout.createSequentialGroup()
-                                    .addComponent(lblNamaKasir)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtNamaKasir, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterLayout.createSequentialGroup()
-                                    .addComponent(lblPassword)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(RegisterLayout.createSequentialGroup()
-                                    .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblUsername)
-                                        .addComponent(lblIdUser)
-                                        .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(103, 103, 103)
-                                    .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtIdUser, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(lblPassword)
+                                .addGap(107, 107, 107)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterLayout.createSequentialGroup()
+                            .addComponent(lblNamaKasir)
+                            .addGap(137, 137, 137)))
                     .addGroup(RegisterLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(51, 51, 51))
+                        .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115)))
+                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtIdUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                        .addComponent(txtNama, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(lblStatus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtRole, javax.swing.GroupLayout.Alignment.LEADING, 0, 316, Short.MAX_VALUE)))
+                .addGap(0, 44, Short.MAX_VALUE))
         );
         RegisterLayout.setVerticalGroup(
             RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RegisterLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(lblRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(49, 49, 49)
                 .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIdUser, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblIdUser, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(lblIdUser, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdUser, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNamaKasir, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNamaKasir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNamaKasir, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRole)
-                    .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRole))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Register, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Register, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Register, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Register, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -236,26 +213,42 @@ public class Register extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         try {
-            int idUser = Integer.parseInt(txtIdUser.getText().trim());
-            String namaKasir = txtNamaKasir.getText().trim();
+            String namaKasir = txtNama.getText().trim();
             String username = txtUsername.getText().trim();
             String password = new String(txtPassword.getPassword()).trim();
             String role = (String) txtRole.getSelectedItem();
 
-            if (namaKasir.isEmpty() || username.isEmpty() || password.isEmpty() || role == null || role.equals("Option")) {
-                lblStatus.setText("Semua field harus diisi!");
+            if (namaKasir.isEmpty() || namaKasir.length() < 3) {
+                lblStatus.setText("Nama Kasir harus diisi dan minimal 3 karakter!");
                 lblStatus.setForeground(Color.red);
                 return;
             }
 
-            String query = "INSERT INTO users (idUser, namaKasir, username, password, role) VALUES (?, ?, ?, ?, ?)";
+            if (username.isEmpty() || username.length() < 4) {
+                lblStatus.setText("Username harus diisi dan minimal 4 karakter!");
+                lblStatus.setForeground(Color.red);
+                return;
+            }
+
+            if (password.isEmpty() || password.length() < 6) {
+                lblStatus.setText("Password harus diisi dan minimal 6 karakter!");
+                lblStatus.setForeground(Color.red);
+                return;
+            }
+
+            if (role == null || role.equals("Option")) {
+                lblStatus.setText("Pilih role yang valid!");
+                lblStatus.setForeground(Color.red);
+                return;
+            }
+
+            String query = "INSERT INTO users (namaKasir, username, password, role) VALUES (?, ?, ?, ?)";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                preparedStatement.setInt(1, idUser);
-                preparedStatement.setString(2, namaKasir);
-                preparedStatement.setString(3, username);
-                preparedStatement.setString(4, password);
-                preparedStatement.setString(5, role);
+                preparedStatement.setString(1, namaKasir);
+                preparedStatement.setString(2, username);
+                preparedStatement.setString(3, password);
+                preparedStatement.setString(4, role);
 
                 int rowsInserted = preparedStatement.executeUpdate();
 
@@ -264,8 +257,7 @@ public class Register extends javax.swing.JFrame {
                     lblStatus.setForeground(Color.green);
                     JOptionPane.showMessageDialog(this, "Registrasi berhasil!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
 
-                    txtIdUser.setText("");
-                    txtNamaKasir.setText("");
+                    txtNama.setText("");
                     txtUsername.setText("");
                     txtPassword.setText("");
                     txtRole.setSelectedItem("Option");
@@ -275,35 +267,24 @@ public class Register extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Gagal melakukan registrasi.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (SQLException e) {
-                lblStatus.setText("Error: " + e.getMessage());
+                if (e.getMessage().contains("Duplicate entry")) {
+                    lblStatus.setText("Username sudah terdaftar!");
+                } else {
+                    lblStatus.setText("Database Error: " + e.getMessage());
+                }
                 lblStatus.setForeground(Color.red);
                 JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (NumberFormatException e) {
-            lblStatus.setText("ID User harus berupa angka!");
-            lblStatus.setForeground(Color.red);
-            JOptionPane.showMessageDialog(this, "ID User harus berupa angka.", "Input Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             lblStatus.setText("Error: " + e.getMessage());
             lblStatus.setForeground(Color.red);
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnRegisterActionPerformed
-
-    private void txtIdUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdUserActionPerformed
-
-    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
-
-    private void txtNamaKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaKasirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNamaKasirActionPerformed
 
     private void txtRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRoleActionPerformed
         // TODO add your handling code here:
@@ -323,10 +304,10 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel lblRole;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblUsername;
-    private javax.swing.JPasswordField txtIdUser;
-    private javax.swing.JPasswordField txtNamaKasir;
+    private javax.swing.JTextField txtIdUser;
+    private javax.swing.JTextField txtNama;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JComboBox<String> txtRole;
-    private javax.swing.JPasswordField txtUsername;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
