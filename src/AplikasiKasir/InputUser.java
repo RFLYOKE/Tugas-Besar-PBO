@@ -48,7 +48,7 @@ public class InputUser extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
-        btnForget = new javax.swing.JButton();
+        btnCreate = new javax.swing.JButton();
         lblStatus = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         txtRole = new javax.swing.JComboBox<>();
@@ -92,13 +92,13 @@ public class InputUser extends javax.swing.JFrame {
         lblPassword.setForeground(new java.awt.Color(102, 102, 102));
         lblPassword.setText("Password");
 
-        btnForget.setBackground(new java.awt.Color(204, 204, 204));
-        btnForget.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnForget.setForeground(new java.awt.Color(51, 51, 51));
-        btnForget.setText("Create account?");
-        btnForget.addActionListener(new java.awt.event.ActionListener() {
+        btnCreate.setBackground(new java.awt.Color(204, 204, 204));
+        btnCreate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCreate.setForeground(new java.awt.Color(51, 51, 51));
+        btnCreate.setText("Create account?");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnForgetActionPerformed(evt);
+                btnCreateActionPerformed(evt);
             }
         });
 
@@ -133,7 +133,7 @@ public class InputUser extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnForget, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblUsername)
@@ -166,7 +166,7 @@ public class InputUser extends javax.swing.JFrame {
                     .addComponent(txtRole, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                     .addComponent(lblRole))
                 .addGap(22, 22, 22)
-                .addComponent(btnForget, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addComponent(btnCreate, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -190,9 +190,11 @@ public class InputUser extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnForgetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnForgetActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnForgetActionPerformed
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        Register regis = new Register();
+        regis.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String username = txtUsername.getText();
@@ -303,7 +305,7 @@ public class InputUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnForget;
+    private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

@@ -52,7 +52,7 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="btnLogin" min="-2" pref="272" max="-2" attributes="0"/>
                       <Component id="lblStatus" min="-2" pref="272" max="-2" attributes="0"/>
-                      <Component id="btnForget" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
+                      <Component id="btnCreate" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lblUsername" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -96,7 +96,7 @@
                       <Component id="lblRole" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                  <Component id="btnForget" pref="31" max="32767" attributes="0"/>
+                  <Component id="btnCreate" pref="31" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblStatus" min="-2" pref="17" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -180,7 +180,7 @@
             <Property name="text" type="java.lang.String" value="Password"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnForget">
+        <Component class="javax.swing.JButton" name="btnCreate">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -194,7 +194,7 @@
             <Property name="text" type="java.lang.String" value="Create account?"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnForgetActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblStatus">
