@@ -5,6 +5,7 @@
 package AplikasiKasir;
 import java.awt.Color;
 import java.sql.*;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.table.DefaultTableModel;
@@ -23,8 +24,49 @@ public class InputTransaksi extends javax.swing.JFrame {
         initComponents();
         txtIDTransaksi.setEnabled(false);
         txtTgl.setEnabled(false);
+        
+        loadComboBoxData(txtMenuPesanan, "menu utama");
+        loadComboBoxData(txtMenuPendamping, "menu pendamping");
+        loadComboBoxData(txtMinuman, "minuman");
+        
+        txtMenuPesanan.addActionListener(e -> {
+            String selectedItem = (String) txtMenuPesanan.getSelectedItem();
+            int harga = ambilHargaDariComboBox(selectedItem);
+            System.out.println("Harga menu utama: " + harga);
+        });
+
+        txtMenuPendamping.addActionListener(e -> {
+            String selectedItem = (String) txtMenuPendamping.getSelectedItem();
+            int harga = ambilHargaDariComboBox(selectedItem);
+            System.out.println("Harga menu pendamping: " + harga);
+        });
+
+        txtMinuman.addActionListener(e -> {
+            String selectedItem = (String) txtMinuman.getSelectedItem();
+            int harga = ambilHargaDariComboBox(selectedItem);
+            System.out.println("Harga minuman: " + harga);
+        });
     }
     
+    private void loadComboBoxData(JComboBox<String> comboBox, String kategori) {
+        comboBox.removeAllItems();
+        comboBox.addItem("Choose");
+
+        String sql = "SELECT namaMenu, harga FROM menu WHERE kategori = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, kategori);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String namaMenu = rs.getString("namaMenu");
+                int harga = rs.getInt("harga");
+                comboBox.addItem(namaMenu + " (" + harga + ")");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error loading ComboBox data: " + e.getMessage());
+        }
+    }
+
     private void tblTransaksiMouseClicked(java.awt.event.MouseEvent evt) {                                         
         int selectedRow = tblTransaksi.getSelectedRow(); 
         if (selectedRow != -1) {
@@ -71,13 +113,6 @@ public class InputTransaksi extends javax.swing.JFrame {
         }
         return 0; 
     }
-    
-//    private int hitungTotalHarga(String itemComboBox, JSpinner spinner) {
-//        int jumlah = getSpinnerValue(spinner); 
-//        int harga = ambilHargaDariComboBox(itemComboBox); 
-//        return jumlah * harga; 
-//    }
-
     
     private void loadTableData() {
         DefaultTableModel dataTransaksi = (DefaultTableModel) tblTransaksi.getModel();
