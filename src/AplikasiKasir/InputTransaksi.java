@@ -72,11 +72,11 @@ public class InputTransaksi extends javax.swing.JFrame {
         return 0; 
     }
     
-    private int hitungTotalHarga(String itemComboBox, JSpinner spinner) {
-        int jumlah = getSpinnerValue(spinner); 
-        int harga = ambilHargaDariComboBox(itemComboBox); 
-        return jumlah * harga; 
-    }
+//    private int hitungTotalHarga(String itemComboBox, JSpinner spinner) {
+//        int jumlah = getSpinnerValue(spinner); 
+//        int harga = ambilHargaDariComboBox(itemComboBox); 
+//        return jumlah * harga; 
+//    }
 
     
     private void loadTableData() {
