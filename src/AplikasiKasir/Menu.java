@@ -35,6 +35,68 @@ public class Menu extends javax.swing.JFrame {
                 JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    private void simpanTransaksi() {
+        try {
+            String idMenu = txtIdMenu.getText().trim();
+            String namaMenu = txtNamaMenu.getText().trim();
+            Double harga = Double.valueOf(txtHarga.getText().trim());
+            String kategori = (String) txtKategori.getSelectedItem();
+            String tanggal = java.time.LocalDate.now().toString();
+            
+         if (namaMenu.isEmpty() || kategori == null || kategori.isEmpty()) {
+                lblStatus.setText("Semua field harus diisi!");
+                lblStatus.setForeground(Color.red);
+                return;
+            }
+         
+         Transaksi transaksi = new Transaksi(
+                idMenu, 
+                "Anonymous", 
+                namaMenu, 
+                "N/A", 
+                "N/A", 
+                tanggal 
+            );
+         
+          String query = "INSERT INTO transaksi (idTransaksi, namaPelanggan, menuPesanan, menuPendamping, minuman, tanggal) VALUES (?, ?, ?, ?, ?, ?)";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, transaksi.getIdTransaksi());
+                preparedStatement.setString(2, transaksi.getNamaPelanggan());
+                preparedStatement.setString(3, transaksi.getMenuPesanan());
+                preparedStatement.setString(4, transaksi.getMenuPendamping());
+                preparedStatement.setString(5, transaksi.getMinuman());
+                preparedStatement.setString(6, transaksi.getTanggal());
+
+                int rowsInserted = preparedStatement.executeUpdate();
+
+                if (rowsInserted > 0) {
+                    lblStatus.setText("Transaksi berhasil disimpan!");
+                    lblStatus.setForeground(Color.green);
+                    JOptionPane.showMessageDialog(this, "Transaksi berhasil disimpan!", "Sukses!", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    lblStatus.setText("Gagal menyimpan transaksi!");
+                    lblStatus.setForeground(Color.red);
+                    JOptionPane.showMessageDialog(this, "Gagal menyimpan transaksi!", "Error!", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (SQLException e) {
+                lblStatus.setText("Error: " + e.getMessage());
+                lblStatus.setForeground(Color.red);
+                JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage(), "Error!", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            lblStatus.setText("Error: " + e.getMessage());
+            lblStatus.setForeground(Color.red);
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage(), "Error!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void tampilkanStatus(String pesan, Color warna) {
+        lblStatus.setText(pesan);
+        lblStatus.setForeground(warna);
+    }
+
    
 
     /**
@@ -47,7 +109,7 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         txtRole = new javax.swing.JComboBox<>();
-        Register = new javax.swing.JPanel();
+        Menu = new javax.swing.JPanel();
         lblNamaMenu = new javax.swing.JLabel();
         btnInput = new javax.swing.JButton();
         lblMenu = new javax.swing.JLabel();
@@ -60,7 +122,7 @@ public class Menu extends javax.swing.JFrame {
         txtHarga = new javax.swing.JPasswordField();
         txtKategori = new javax.swing.JComboBox<>();
         btnDetail = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         txtRole.setBackground(new java.awt.Color(255, 255, 255));
         txtRole.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -74,7 +136,7 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Register.setBackground(new java.awt.Color(255, 248, 243));
+        Menu.setBackground(new java.awt.Color(255, 248, 243));
 
         lblNamaMenu.setBackground(new java.awt.Color(102, 102, 102));
         lblNamaMenu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -156,73 +218,73 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 0, 51));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Back");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setBackground(new java.awt.Color(255, 0, 51));
+        btnBack.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout RegisterLayout = new javax.swing.GroupLayout(Register);
-        Register.setLayout(RegisterLayout);
-        RegisterLayout.setHorizontalGroup(
-            RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RegisterLayout.createSequentialGroup()
+        javax.swing.GroupLayout MenuLayout = new javax.swing.GroupLayout(Menu);
+        Menu.setLayout(MenuLayout);
+        MenuLayout.setHorizontalGroup(
+            MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIdMenu)
                     .addComponent(lblNamaMenu)
                     .addComponent(lblHarga)
                     .addComponent(lblKategori))
-                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(RegisterLayout.createSequentialGroup()
+                .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MenuLayout.createSequentialGroup()
                         .addGap(129, 129, 129)
                         .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(23, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnInput, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtKategori, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtNamaMenu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                                 .addComponent(txtIdMenu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                                 .addComponent(txtHarga, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)))
                         .addGap(48, 48, 48))))
             .addComponent(lblMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jButton2)
+                .addComponent(btnBack)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnDetail)
                 .addGap(16, 16, 16))
         );
-        RegisterLayout.setVerticalGroup(
-            RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RegisterLayout.createSequentialGroup()
+        MenuLayout.setVerticalGroup(
+            MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuLayout.createSequentialGroup()
                 .addGap(7, 7, 7)
-                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDetail)
-                    .addComponent(jButton2))
+                    .addComponent(btnBack))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtIdMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblIdMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNamaMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNamaMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -236,11 +298,11 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Register, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Register, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -272,7 +334,7 @@ public class Menu extends javax.swing.JFrame {
             if (rowsInserted > 0) {
                 lblStatus.setText("Registrasi berhasil!");
                 lblStatus.setForeground(Color.green);
-                JOptionPane.showMessageDialog(this, "Registrasi berhasil!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Registrasi berhasil!", "Sukses!", JOptionPane.INFORMATION_MESSAGE);
 
                 txtIdMenu.setText("");
                 txtNamaMenu.setText("");
@@ -281,17 +343,17 @@ public class Menu extends javax.swing.JFrame {
             } else {
                 lblStatus.setText("Input menu gagal!");
                 lblStatus.setForeground(Color.red);
-                JOptionPane.showMessageDialog(this, "Gagal melakukan input menu.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Gagal melakukan input menu!", "Error!", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException e) {
             lblStatus.setText("Error: " + e.getMessage());
             lblStatus.setForeground(Color.red);
-            JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage(), "Error!", JOptionPane.ERROR_MESSAGE);
         }
     } catch (NumberFormatException e) {
         lblStatus.setText("ID User harus berupa angka!");
         lblStatus.setForeground(Color.red);
-        JOptionPane.showMessageDialog(this, "ID Manu harus berupa angka.", "Input Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "ID Manu harus berupa angka!", "Input Error!", JOptionPane.ERROR_MESSAGE);
     } catch (Exception e) {
         lblStatus.setText("Error: " + e.getMessage());
         lblStatus.setForeground(Color.red);
@@ -314,11 +376,11 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRoleActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         FrameAdmin back = new FrameAdmin();
         back.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
         DetailMenu det = new DetailMenu();
@@ -332,10 +394,10 @@ public class Menu extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Register;
+    private javax.swing.JPanel Menu;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDetail;
     private javax.swing.JButton btnInput;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel lblHarga;
     private javax.swing.JLabel lblIdMenu;
     private javax.swing.JLabel lblKategori;
