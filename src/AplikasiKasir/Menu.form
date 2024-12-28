@@ -90,7 +90,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btnInput" min="-2" pref="317" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jComboBox1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtKategori" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtNamaMenu" alignment="0" pref="316" max="32767" attributes="0"/>
                                   <Component id="txtIdMenu" alignment="0" pref="316" max="32767" attributes="0"/>
                                   <Component id="txtHarga" alignment="0" pref="316" max="32767" attributes="0"/>
@@ -126,7 +126,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblKategori" min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="txtKategori" min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="lblStatus" min="-2" pref="17" max="-2" attributes="0"/>
@@ -279,7 +279,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtHargaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="txtKategori">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
