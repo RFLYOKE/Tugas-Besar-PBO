@@ -22,6 +22,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         inisialisasiDatabase();
+        txtIdMenu.setEnabled(false);
     }
     
     private void inisialisasiDatabase() {
@@ -57,7 +58,7 @@ public class Menu extends javax.swing.JFrame {
         txtIdMenu = new javax.swing.JPasswordField();
         txtNamaMenu = new javax.swing.JPasswordField();
         txtHarga = new javax.swing.JPasswordField();
-        txtKategori = new javax.swing.JPasswordField();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         txtRole.setBackground(new java.awt.Color(255, 255, 255));
         txtRole.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -138,14 +139,10 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        txtKategori.setBackground(new java.awt.Color(247, 231, 220));
-        txtKategori.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtKategori.setForeground(new java.awt.Color(51, 51, 51));
-        txtKategori.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtKategoriActionPerformed(evt);
-            }
-        });
+        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose", "Menu Utama", "Menu Pendamping", "Minuman" }));
 
         javax.swing.GroupLayout RegisterLayout = new javax.swing.GroupLayout(Register);
         Register.setLayout(RegisterLayout);
@@ -167,11 +164,11 @@ public class Menu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnInput, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtNamaMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtIdMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtNamaMenu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                                .addComponent(txtIdMenu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                                .addComponent(txtHarga, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)))
                         .addGap(48, 48, 48))))
             .addComponent(lblMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -193,9 +190,9 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -282,10 +279,6 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtHargaActionPerformed
 
-    private void txtKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKategoriActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtKategoriActionPerformed
-
     private void txtRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRoleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRoleActionPerformed
@@ -298,6 +291,7 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Register;
     private javax.swing.JButton btnInput;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel lblHarga;
     private javax.swing.JLabel lblIdMenu;
     private javax.swing.JLabel lblKategori;
@@ -306,7 +300,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel lblStatus;
     private javax.swing.JPasswordField txtHarga;
     private javax.swing.JPasswordField txtIdMenu;
-    private javax.swing.JPasswordField txtKategori;
     private javax.swing.JPasswordField txtNamaMenu;
     private javax.swing.JComboBox<String> txtRole;
     // End of variables declaration//GEN-END:variables
