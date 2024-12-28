@@ -4,17 +4,48 @@
  */
 package AplikasiKasir;
 
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Asus
  */
 public class DetailMenu extends javax.swing.JFrame {
+    Connection connection;
+
 
     /**
      * Creates new form DetailMenu
      */
     public DetailMenu() {
         initComponents();
+        connection = DatabaseConnection.getConnection();
+        loadDataDetailMenu();
+    }
+    
+     private void loadDataDetailMenu() {
+        DefaultTableModel model = (DefaultTableModel) tblDetailMenu.getModel();
+        model.setRowCount(0); 
+
+        try {
+            String sql = "SELECT * FROM menu";
+            PreparedStatement pst = connection.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Object[] row = new Object[] {
+                    rs.getString("idMenu"),
+                    rs.getString("namaMenu"),
+                    rs.getInt("harga"),
+                    rs.getString("kategori"),
+                };
+                model.addRow(row); 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Error loading data: " + e.getMessage());
+        }
     }
 
     /**
@@ -30,6 +61,7 @@ public class DetailMenu extends javax.swing.JFrame {
         lblMenu = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDetailMenu = new javax.swing.JTable();
+        btnOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +84,16 @@ public class DetailMenu extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblDetailMenu);
 
+        btnOut.setBackground(new java.awt.Color(64, 93, 114));
+        btnOut.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnOut.setForeground(new java.awt.Color(255, 255, 255));
+        btnOut.setText("Logout");
+        btnOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -63,11 +105,17 @@ public class DetailMenu extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnOut)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(7, 7, 7)
+                .addComponent(btnOut)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -92,11 +140,18 @@ public class DetailMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOutActionPerformed
+        InputUser logout = new InputUser();
+        logout.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnOutActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnOut;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblMenu;

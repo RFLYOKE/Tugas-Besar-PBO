@@ -59,6 +59,8 @@ public class Menu extends javax.swing.JFrame {
         txtNamaMenu = new javax.swing.JPasswordField();
         txtHarga = new javax.swing.JPasswordField();
         txtKategori = new javax.swing.JComboBox<>();
+        btnDetail = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         txtRole.setBackground(new java.awt.Color(255, 255, 255));
         txtRole.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -144,6 +146,26 @@ public class Menu extends javax.swing.JFrame {
         txtKategori.setForeground(new java.awt.Color(0, 0, 0));
         txtKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose", "Menu Utama", "Menu Pendamping", "Minuman" }));
 
+        btnDetail.setBackground(new java.awt.Color(64, 93, 114));
+        btnDetail.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDetail.setForeground(new java.awt.Color(255, 255, 255));
+        btnDetail.setText("Detail Menu");
+        btnDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetailActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(255, 0, 51));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout RegisterLayout = new javax.swing.GroupLayout(Register);
         Register.setLayout(RegisterLayout);
         RegisterLayout.setHorizontalGroup(
@@ -171,11 +193,21 @@ public class Menu extends javax.swing.JFrame {
                                 .addComponent(txtHarga, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)))
                         .addGap(48, 48, 48))))
             .addComponent(lblMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDetail)
+                .addGap(16, 16, 16))
         );
         RegisterLayout.setVerticalGroup(
             RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RegisterLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(7, 7, 7)
+                .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDetail)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addGroup(RegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -282,6 +314,18 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRoleActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        FrameAdmin back = new FrameAdmin();
+        back.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
+        DetailMenu det = new DetailMenu();
+        det.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnDetailActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -289,7 +333,9 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Register;
+    private javax.swing.JButton btnDetail;
     private javax.swing.JButton btnInput;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel lblHarga;
     private javax.swing.JLabel lblIdMenu;
     private javax.swing.JLabel lblKategori;
