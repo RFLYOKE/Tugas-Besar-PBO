@@ -18,6 +18,8 @@ public class DetailMenu extends javax.swing.JFrame {
     /**
      * Creates new form DetailMenu
      */
+    
+    //Konstruktor buat penghubung koneksi ke database
     public DetailMenu() {
         initComponents();
         connection = DatabaseConnection.getConnection();
@@ -25,14 +27,17 @@ public class DetailMenu extends javax.swing.JFrame {
     }
     
      private void loadDataDetailMenu() {
+        // Mendapatkan model tabel dari komponen tblDetailMenu untuk manipulasi data
         DefaultTableModel model = (DefaultTableModel) tblDetailMenu.getModel();
+        // Menghapus semua baris yang ada pada tabel sebelum memuat data baru
         model.setRowCount(0); 
 
         try {
             String sql = "SELECT * FROM menu";
             PreparedStatement pst = connection.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
-
+            
+            // Loop melalui setiap baris data yang diambil dari database
             while (rs.next()) {
                 Object[] row = new Object[] {
                     rs.getString("idMenu"),
@@ -40,10 +45,13 @@ public class DetailMenu extends javax.swing.JFrame {
                     rs.getInt("harga"),
                     rs.getString("kategori"),
                 };
+                // Menambahkan baris data ke dalam model tabel
                 model.addRow(row); 
             }
         } catch (SQLException e) {
+            // Menangani kesalahan SQL dan mencetak detail kesalahan ke konsol
             e.printStackTrace();
+            // Menampilkan pesan kesalahan kepada pengguna        
             javax.swing.JOptionPane.showMessageDialog(this, "Error loading data: " + e.getMessage());
         }
     }
@@ -176,7 +184,9 @@ public class DetailMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOutActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // Mendapatkan indeks baris yang dipilih pada tabel
         int selectedRow = tblDetailMenu.getSelectedRow();
+        // Jika tidak ada baris yang dipilih, tampilkan pesan error
         if (selectedRow == -1) {
             javax.swing.JOptionPane.showMessageDialog(this, "Pilih data yang ingin dihapus terlebih dahulu!", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
             return;
