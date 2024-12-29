@@ -9,15 +9,17 @@ package AplikasiKasir;
  * @author Asus
  */
 public class FrameAdmin extends javax.swing.JFrame {
-     public void setAdmin(String showAdmin, String showUsername){
-        lblNama.setText(showAdmin);
-        lblUsernameKasir.setText(showUsername);
-    }
     /**
      * Creates new form FrameAdmin
      */
     public FrameAdmin() {
         initComponents();
+        setAdmin(UserSessions.getNamaKasir(), UserSessions.getUsername());
+    }
+    
+    public void setAdmin(String showAdmin, String showUsername){
+        lblNama.setText(showAdmin);
+        lblUsernameAdmin.setText(showUsername);
     }
 
     /**
@@ -32,7 +34,7 @@ public class FrameAdmin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblJudul = new javax.swing.JLabel();
         lblNama = new javax.swing.JLabel();
-        lblUsernameKasir = new javax.swing.JLabel();
+        lblUsernameAdmin = new javax.swing.JLabel();
         btnNext = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -52,10 +54,10 @@ public class FrameAdmin extends javax.swing.JFrame {
         lblNama.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblNama.setText("Nama");
 
-        lblUsernameKasir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblUsernameKasir.setForeground(new java.awt.Color(102, 102, 102));
-        lblUsernameKasir.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblUsernameKasir.setText("username");
+        lblUsernameAdmin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblUsernameAdmin.setForeground(new java.awt.Color(102, 102, 102));
+        lblUsernameAdmin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblUsernameAdmin.setText("username");
 
         btnNext.setBackground(new java.awt.Color(64, 93, 114));
         btnNext.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -103,7 +105,7 @@ public class FrameAdmin extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblUsernameKasir, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                            .addComponent(lblUsernameAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                             .addComponent(lblNama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(14, 14, 14))
         );
@@ -119,12 +121,12 @@ public class FrameAdmin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUsernameKasir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblUsernameAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTambahMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -137,9 +139,7 @@ public class FrameAdmin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -169,6 +169,6 @@ public class FrameAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblJudul;
     private javax.swing.JLabel lblNama;
-    private javax.swing.JLabel lblUsernameKasir;
+    private javax.swing.JLabel lblUsernameAdmin;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,7 +9,8 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Asus
+ * @author Akmal Rafly Dzunurain, Nadiya Salsabila, Davina Kezia
+ * S1SI-07-B
  */
 public class InputUser extends javax.swing.JFrame {
     private Connection connection;
@@ -219,6 +220,9 @@ public class InputUser extends javax.swing.JFrame {
                     String showUsername = resultSet.getString("username");
                     
                     if(dbRole.equals(role)){
+                        UserSessions.setNamaKasir(nama);
+                        UserSessions.setUsername(showUsername);
+                        
                         lblStatus.setText("Login Successful");
                         lblStatus.setForeground(Color.green);
                         JOptionPane.showMessageDialog(this,

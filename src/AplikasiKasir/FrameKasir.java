@@ -18,6 +18,8 @@ public class FrameKasir extends javax.swing.JFrame {
      */
     public FrameKasir() {
         initComponents();
+        lblNama.setText(UserSessions.getNamaKasir());
+        lblUsernameKasir.setText(UserSessions.getUsername());
     }
 
     /**

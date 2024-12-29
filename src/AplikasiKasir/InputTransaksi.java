@@ -601,12 +601,12 @@ public class InputTransaksi extends javax.swing.JFrame {
             return;
         }
 
-        if (!menuPend.equalsIgnoreCase("tidak pake") && jmlPendamping <= 0) {
+        if (!menuPend.equalsIgnoreCase("tidak pake (0)") && jmlPendamping <= 0) {
             JOptionPane.showMessageDialog(null, "Jumlah menu pendamping tidak boleh 0 atau negatif jika dipilih!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        if (!minuman.equalsIgnoreCase("tidak pake") && jmlMinuman <= 0) {
+        if (!minuman.equalsIgnoreCase("tidak pakai (0)") && jmlMinuman <= 0) {
             JOptionPane.showMessageDialog(null, "Jumlah minuman tidak boleh 0 atau negatif jika dipilih!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
